@@ -89,12 +89,14 @@ class RollHoverButton extends HTMLElement {
 			}
 			break;
 		case 'target':
-			if (this.target === '_blank') {
-				this.anchor.target = '_blank';
-				this.anchor.rel = 'noopener noreferrer';
-			} else {
-				this.anchor.target = '';
-				this.anchor.rel = '';
+			if (this.anchor) {
+				if (this.target === '_blank') {
+					this.anchor.target = '_blank';
+					this.anchor.rel = 'noopener noreferrer';
+				} else {
+					this.anchor.target = '';
+					this.anchor.rel = '';
+				}
 			}
 			break;
 		}

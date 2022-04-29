@@ -28,7 +28,7 @@ roll-hover-button div {
 }
 
 @media (hover: hover) {
-  roll-hover-button:hover {
+  roll-hover-button:hover > a {
     > div > * {
       &:nth-child(1) {
         transform: translate3d(0, -100%, 0);

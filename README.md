@@ -8,8 +8,16 @@
 yarn add @antipodes-medical/roll-hover-button
 ```
 
+Dans le Javascript :
+
 ```javascript
 import '@antipodes-medical/roll-hover-button';
+```
+
+Et dans votre SCSS :
+
+```scss
+@import '~@antipodes-medical/roll-hover-button/src/roll-hover-button';
 ```
 
 ## Utilisation
