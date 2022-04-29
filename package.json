@@ -1,24 +1,27 @@
 {
-  "name": "@antipodes-medical/NOM-DU-PACKAGE",
-  "version": "VERSION-DU-PACKAGE",
+  "name": "@antipodes-medical/roll-hover-button",
+  "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "eslint": "./node_modules/.bin/eslint '**/*.js'",
-    "eslint:fix": "./node_modules/.bin/eslint '**/*.js' --fix"
+    "eslint:fix": "./node_modules/.bin/eslint '**/*.js' --fix",
+    "stylelint": "./node_modules/.bin/stylelint '**/*.scss'",
+    "stylelint:fix": "./node_modules/.bin/stylelint '**/*.scss' --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antipodes-medical/NOM-DU-PACKAGE.git"
+    "url": "git+https://github.com/antipodes-medical/roll-hover-button.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/antipodes-medical/NOM-DU-PACKAGE/issues"
+    "url": "https://github.com/antipodes-medical/roll-hover-button/issues"
   },
-  "homepage": "https://github.com/antipodes-medical/NOM-DU-PACKAGE#readme",
+  "homepage": "https://github.com/antipodes-medical/roll-hover-button#readme",
   "description": "",
   "devDependencies": {
-    "@antipodes-medical/eslint-config-antipodes": "^1.0.5"
+    "@antipodes-medical/eslint-config-antipodes": "^1.0.5",
+    "@antipodes-medical/stylelint-config-antipodes": "^1.2.6"
   }
 }

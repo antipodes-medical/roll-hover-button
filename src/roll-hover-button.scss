@@ -1,0 +1,42 @@
+roll-hover-button > a {
+  display: inline-flex;
+  align-items: center;
+}
+
+roll-hover-button div {
+  position: relative;
+  overflow: hidden;
+
+  > * {
+    display: block;
+    transition: transform 0.35s ease;
+
+    &:nth-child(2) {
+      width: 100%;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translate3d(0, 100%, 0);
+      white-space: nowrap;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+}
+
+@media (hover: hover) {
+  roll-hover-button:hover {
+    > div > * {
+      &:nth-child(1) {
+        transform: translate3d(0, -100%, 0);
+      }
+
+      &:nth-child(2) {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+}
