@@ -22,6 +22,6 @@
   "description": "",
   "devDependencies": {
     "@antipodes-medical/eslint-config-antipodes": "^1.0.5",
-    "@antipodes-medical/stylelint-config-antipodes": "^1.2.6"
+    "@antipodes-medical/stylelint-config-antipodes": "^2.0.1"
   }
 }
