@@ -75,6 +75,22 @@ Vous pouvez ajouter un pictogramme (ou autre) dans ce bouton, par exemple :
 
 Il vous faudra le définir dans `<span slot="picto"></span>`
 
+### Bouton
+
+Par défaut, l'élément `roll-hover-button` va générer un `<a>`, vous pouvez changer ce comportement et mettre un `<button>` à la place :
+
+```html
+<!-- Bouton de soumission --->
+<roll-hover-button type="submit" is-button>
+    <span slot="title">Mon bouton Submit</span>
+</roll-hover-button>
+
+<!-- Bouton de réinitialisation --->
+<roll-hover-button type="reset" is-button>
+    <span slot="title">Mon bouton de réinitialisation</span>
+</roll-hover-button>
+```
+
 ## Custom styling
 
 ```css

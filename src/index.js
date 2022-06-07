@@ -2,19 +2,20 @@ class RollHoverButton extends HTMLElement {
 
 	constructor() { // eslint-disable-line no-useless-constructor
 		super(); // always call super() first in the ctor. This also calls the extended class' ctor.
+		this.isButton = this.hasAttribute('is-button');
 	}
 
 	static get observedAttributes() {
-		return ['href', 'target'];
+		return ['href', 'target', 'type'];
 	}
 
 	/**
-   * Get anchor.
+   * Get button.
    *
-   * @returns {HTMLAnchorElement}
+   * @returns {HTMLAnchorElement|HTMLButtonElement}
    */
-	get anchor() {
-		return this.querySelector('a');
+	get button() {
+		return this.querySelector(this.isButton ? 'button' : 'a');
 	}
 
 	/**
@@ -34,6 +35,26 @@ class RollHoverButton extends HTMLElement {
 	set href(value) {
 		if (typeof value === 'string') {
 			this.setAttribute('href', value);
+		}
+	}
+
+	/**
+   * Get type.
+   *
+   * @returns {string}
+   */
+	get type() {
+		return this.getAttribute('type');
+	}
+
+	/**
+   * Set type.
+   *
+   * @param value
+   */
+	set type(value) {
+		if (typeof value === 'string') {
+			this.setAttribute('type', value);
 		}
 	}
 
@@ -65,8 +86,13 @@ class RollHoverButton extends HTMLElement {
 		if (!title) {
 			throw new Error('You need to specify a title slot.');
 		}
-		if (!this.href) {
+
+		if (!this.isButton && !this.href) {
 			throw new Error('You need to specify an href.');
+		}
+
+		if (this.isButton && !this.type) {
+			throw new Error('You need to specify a type to the button.');
 		}
 
 		template = template
@@ -74,31 +100,56 @@ class RollHoverButton extends HTMLElement {
 			.replaceAll('{%PICTO%}', picto ? picto.outerHTML : '');
 
 		this.innerHTML = template;
-		this.anchor.href = this.href;
-		if (this.target === '_blank') {
-			this.anchor.target = '_blank';
-			this.anchor.rel = 'noopener noreferrer';
-		}
+		this._buttonAttributes();
 	}
 
+	/**
+   * On attribute change, handle the new value.
+   *
+   * @param attrName
+   * @param oldValue
+   * @param newValue
+   */
 	attributeChangedCallback(attrName, oldValue, newValue) {
 		switch (attrName) {
 		case 'href':
-			if (this.anchor) {
-				this.anchor.href = newValue;
+			if (this.button) {
+				this.button.href = newValue;
 			}
 			break;
 		case 'target':
-			if (this.anchor) {
+			if (this.button) {
 				if (this.target === '_blank') {
-					this.anchor.target = '_blank';
-					this.anchor.rel = 'noopener noreferrer';
+					this.button.target = '_blank';
+					this.button.rel = 'noopener noreferrer';
 				} else {
-					this.anchor.target = '';
-					this.anchor.rel = '';
+					this.button.target = '';
+					this.button.rel = '';
 				}
 			}
 			break;
+		case 'type':
+			if (this.button) {
+				this.button.type = newValue;
+			}
+			break;
+		}
+	}
+
+	/**
+   * Handle button attributes.
+   *
+   * @private
+   */
+	_buttonAttributes() {
+		if (!this.isButton) {
+			this.button.href = this.href;
+			if (this.target === '_blank') {
+				this.button.target = '_blank';
+				this.button.rel = 'noopener noreferrer';
+			}
+		} else {
+			this.button.type = this.type;
 		}
 	}
 
@@ -109,7 +160,7 @@ class RollHoverButton extends HTMLElement {
    * @private
    */
 	_getTemplate() {
-		return `
+		return !this.isButton ? `
         <a>
             {%PICTO%}
             <div>
@@ -117,6 +168,14 @@ class RollHoverButton extends HTMLElement {
                {%TITLE%}
             </div>
         </a>
+    ` : `
+        <button>
+            {%PICTO%}
+            <div>
+               {%TITLE%}
+               {%TITLE%}
+            </div>
+        </button>
     `;
 	}
 }
