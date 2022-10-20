@@ -102,10 +102,9 @@ class RollHoverButton extends HTMLElement {
 		this.innerHTML = template;
 		this._buttonAttributes();
 
-		this.addEventListener('click', (e) => {
-			e.preventDefault();
+		// On click on the web custom element, trigger click on the first children.
+		this.addEventListener('click', () => {
 			this.children[0].click();
-			return false;
 		});
 	}
 
