@@ -101,6 +101,12 @@ class RollHoverButton extends HTMLElement {
 
 		this.innerHTML = template;
 		this._buttonAttributes();
+
+		this.addEventListener('click', (e) => {
+			e.preventDefault();
+			this.children[0].click();
+			return false;
+		});
 	}
 
 	/**
